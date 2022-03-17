@@ -1,6 +1,27 @@
 import axios from 'axios';
 import router from '../router';
 
+let baseURL;
+let webSocket;
+
+const getBaseUrl = function () {
+    $.ajax({
+        type : "get",
+        async: false, // fasle表示同步请求，true表示异步请求
+        url : "./config.json",
+        data : {},
+        success : function(result) {
+            baseURL = result.url;
+            webSocket = result.webSocket;
+        },
+        error : function(e){
+            console.log(e);
+        }
+    });
+};
+
+// getBaseUrl();
+
 const service = axios.create({
     // process.env.NODE_ENV === 'development', // TODO 来判断是否开发环境
     baseURL: process.env.VUE_APP_BACKEND_URL,

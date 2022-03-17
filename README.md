@@ -9,20 +9,14 @@
 
 ## 功能
 
-<!-- -   [x] 登录/注销
+-   [x] 登录/注销
 -   [x] Dashboard
--   [x] 支持切换主题色 :sparkles:
--   [x] 远程批量部署和调用
--   [x] 任务日志
--   [x] 新增节点、测试节点
--   [x] 主机节点详细指标
--   [x] 国际化
--   [ ] 权限管理
--   [ ] 站内消息推送 -->
+-   [ ] 支持切换主题色
+-   [ ] 任务日志
+-   [ ] 国际化
 
 
-
-
+---
 
 ## License
 [MIT](https://github.com/PY-GZKY/fastapi-crawl-admin/LICENSE)

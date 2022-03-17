@@ -116,22 +116,23 @@
 <style>
     .tags {
         position: relative;
-        height: 30px;
+        height: 38px;
         overflow: hidden;
         background: #fff;
         padding-right: 120px;
-        box-shadow: 0 5px 10px #ddd;
+        /* box-shadow: 0 5px 10px #ddd; */
     }
 
     .tags ul {
         box-sizing: border-box;
+        padding-left: 10px;
         width: 100%;
         height: 100%;
     }
 
     .tags-li {
         float: left;
-        margin: 3px 5px 2px 3px;
+        margin: 6px 2px 1px 1px;
         border-radius: 3px;
         font-size: 12px;
         overflow: hidden;
@@ -140,7 +141,7 @@
         line-height: 23px;
         border: 1px solid #e9eaec;
         background: #fff;
-        padding: 0 5px 0 12px;
+        padding: 1px 3px 0 12px;
         vertical-align: middle;
         color: #666;
         -webkit-transition: all .3s ease-in;
@@ -172,15 +173,15 @@
 
     .tags-close-box {
         position: absolute;
-        right: 0;
+        right: 20px;
         top: 0;
         box-sizing: border-box;
-        padding-top: 1px;
+        padding-top: 4px;
         text-align: center;
         width: 110px;
-        height: 30px;
+        height: 32px;
         background: #fff;
-        box-shadow: -3px 0 15px 3px rgba(0, 0, 0, .1);
+        /* box-shadow: -3px 0 15px 3px rgba(0, 0, 0, .1); */
         z-index: 10;
     }
 

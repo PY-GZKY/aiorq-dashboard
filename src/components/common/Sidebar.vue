@@ -67,57 +67,16 @@ export default {
         },
         {
           icon: "el-icon-s-promotion",
-          index: "projectIndex",
-          title: "爬虫项目",
-        },
-        {
-          icon: "el-icon-check",
-          index: "taskIndex",
-          title: "爬虫任务",
+          index: "aiorq",
+          title: "aiorq",
         },
 
-        // {
-        //   icon: "el-icon-time",
-        //   index: "timeup",
-        //   title: "定时任务",
-        // },
-        {
-          icon: "el-icon-monitor",
-          // index: "host",
-          title: "节点",
-          subs: [
-            {
-              index: "/hosts",
-              title: "主机列表",
-            },
-
-            {
-              index: "/host/deploys",
-              title: "安装服务",
-            },
-
-             {
-              index: "/host/masterRsa",
-              title: "SSH公钥",
-            },
-          ],
-        },
 
         {
-            icon: 'el-icon-lx-home',
-            index: 'monitor',
-            title: '监控服务'
+          icon: "el-icon-lx-cascades",
+          index: "table",
+          title: "基础表格",
         },
-         {
-            icon: 'el-icon-time',
-            index: 'corn',
-            title: '定时任务'
-        },
-        // {
-        //   icon: "el-icon-lx-cascades",
-        //   index: "table",
-        //   title: "基础表格",
-        // },
 
         // {
         //   icon: "el-icon-lx-copy",
@@ -168,23 +127,23 @@ export default {
         //   title: "词云图",
         // },
 
-        {
-          icon: "el-icon-s-data",
-          index: "charts",
-          title: "任务统计",
-        },
+        // {
+        //   icon: "el-icon-s-data",
+        //   index: "charts",
+        //   title: "任务统计",
+        // },
 
-        {
-          icon: "el-icon-tickets",
-          index: "workLog",
-          title: "任务日志",
-        },
+        // {
+        //   icon: "el-icon-tickets",
+        //   index: "workLog",
+        //   title: "任务日志",
+        // },
 
-        {
-          icon: "el-icon-setting",
-          index: "setting",
-          title: "设置",
-        },
+        // {
+        //   icon: "el-icon-setting",
+        //   index: "setting",
+        //   title: "设置",
+        // },
     
         // {
         //     icon: 'el-icon-rank',
@@ -221,13 +180,7 @@ export default {
         //       title: "404页面",
         //     },
         //   ],
-        // },
-
-        {
-            icon: 'el-icon-lx-redpacket_fill',
-            index: '/donate',
-            title: '支持作者'
-        }
+        // }
       ],
     };
   },

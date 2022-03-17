@@ -11,7 +11,7 @@ export default new Router({
         },
         {
             path: '/',
-            component: () => import(/* webpackChunkName: "home" */ '../components/common/Home.vue'),
+            component: () => import('../components/common/Home.vue'),
             meta: { title: '自述文件' },
             children: [
                 {
@@ -20,110 +20,25 @@ export default new Router({
                     meta: { title: '系统首页' }
                 },
                 {
-                    path: 'projectIndex',
-                    component: () => import( '../components/spider/ProIndex.vue'),
-                    meta: { title: '爬虫项目' },
+                    path: '/aiorq',
+                    component: () => import( '../components/aiorq/job.vue'),
+                    meta: { title: 'aiorq' },
 
                 },
-                {
-                    path: 'project/:projectId',
-                    component: () => import( '../components/spider/TaskList.vue'),
-                    meta: { title: '项目列表' },
-
-                },
-                {
-                    path: 'taskIndex',
-                    name: '爬虫任务',
-                    component: () => import('../components/spider/TaskIndex.vue'),
-                    meta: {
-                        title: '爬虫任务',
-                    },
-                },
-
-                {
-                    path: 'monitor',
-                    name: '定时任务',
-                    component: () => import('../components/monitor/Monitor.vue'),
-                    meta: {
-                        title: '定时任务',
-                    },
-                },
-
-                {
-                    path: 'corn',
-                    name: '定时任务',
-                    component: () => import('../components/spider/corn.vue'),
-                    meta: {
-                        title: '定时任务',
-                    },
-                },
-
-                {
-                    path: 'taskLog/:taskId',
-                    component: () => import(/* webpackChunkName: "dashboard" */ '../components/log/spiderJournal.vue'),
-                    meta: { title: '任务详情' }
-                },
-                {
             
-                    path: 'taskDetail/:taskId',
-                    component: () => import(/* webpackChunkName: "dashboard" */ '../components/spider/TaskDetail.vue'),
-                    meta: { title: '爬虫详情' }
-                },
-                {
-                    path: '/spiderdata',
-                    component: () => import(/* webpackChunkName: "dashboard" */ '../components/spider/SpiderData.vue'),
-                    meta: { title: '爬虫数据' }
-                },
-                // {
-                //     path: '/erpdata',
-                //     component: () => import(/* webpackChunkName: "dashboard" */ '../components/until/Erp.vue'),
-                //     meta: { title: '库存数据' }
-                // },
                 // {
                 //     path: '/icon',
                 //     component: () => import(/* webpackChunkName: "icon" */ '../components/until/Icon.vue'),
                 //     meta: { title: '自定义图标' }
                 // },
-                // {
-                //     path: '/table',
-                //     component: () => import(/* webpackChunkName: "table" */ '../components/forms/BaseTable.vue'),
-                //     meta: { title: '基础表格' }
-                // },
-                // {
-                //     path: '/hosts',
-                //     component: () => import(/* webpackChunkName: "table" */ '../components/host/HostList.vue'),
-                //     meta: { title: '节点' }
-                // },
-                // {
-                //     path: '/host/deploys',
-                //     component: () => import(/* webpackChunkName: "table" */ '../components/host/deploys.vue'),
-                //     meta: { title: '安装服务' }
-                // },
-                // {
-            
-                //     path: 'hostDetail/:uuid',
-                //     component: () => import(/* webpackChunkName: "dashboard" */ '../components/host/HostDetail.vue'),
-                //     meta: { title: '节点详情' }
-                // },
+                {
+                    path: '/table',
+                    component: () => import(/* webpackChunkName: "table" */ '../components/forms/BaseTable.vue'),
+                    meta: { title: '基础表格' }
+                },
+       
 
-                // {
-            
-                //     path: '/host/masterRsa',
-                //     component: () => import(/* webpackChunkName: "dashboard" */ '../components/host/MasterRsa.vue'),
-                //     meta: { title: 'master公钥' }
-                // },
-
-                // {
-                //     path: '/deployTask/:taskId',
-                //     component: () => import(/* webpackChunkName: "table" */ '../components/spider/TaskDeploy.vue'),
-                //     meta: { title: '部署任务' }
-                // },
-
-                // {
-                //     path: '/hostDetail',
-                //     component: () => import(/* webpackChunkName: "table" */ '../components/host/HostDetail.vue'),
-                //     meta: { title: '节点详情' }
-                // },
+              
                 // {
                 //     path: '/box',
                 //     component: () => import(/* webpackChunkName: "table" */ '../components/until/Box.vue'),
@@ -152,47 +67,46 @@ export default new Router({
                 //     component: () => import(/* webpackChunkName: "markdown" */ '../components/until/Markdown.vue'),
                 //     meta: { title: 'markdown编辑器' }
                 // },
-                {
-                    // 图片上传组件
-                    path: '/upload',
-                    component: () => import('../components/until/Upload.vue'),
-                    meta: { title: '文件上传' }
-                },
-                {
-                    path: '/charts',
-                    component: () => import( '../components/eCharts/BaseCharts.vue'),
-                    meta: { title: 'schart图表' }
-                },
-                {
-                    path: '/workLog',
-                    component: () => import('../components/workLog/LogIndex.vue'),
-                    meta: {title: '任务日志'}
-                },
+                // {
+                //     path: '/upload',
+                //     component: () => import('../components/until/Upload.vue'),
+                //     meta: { title: '文件上传' }
+                // },
+                // {
+                //     path: '/charts',
+                //     component: () => import( '../components/eCharts/BaseCharts.vue'),
+                //     meta: { title: 'schart图表' }
+                // },
+                // {
+                //     path: '/workLog',
+                //     component: () => import('../components/workLog/LogIndex.vue'),
+                //     meta: {title: '任务日志'}
+                // },
 
-                {
-                    path: '/setting',
-                    component: () => import('../components/setting/Setting.vue'),
-                    meta: {title: '设置'}
-                },
+                // {
+                //     path: '/setting',
+                //     component: () => import('../components/setting/Setting.vue'),
+                //     meta: {title: '设置'}
+                // },
 
-                {
-                    // 拖拽列表组件
-                    path: '/drag',
-                    component: () => import( '../components/until/DragList.vue'),
-                    meta: { title: '拖拽列表' }
-                },
-                {
-                    // 拖拽Dialog组件
-                    path: '/dialog',
-                    component: () => import('../components/until/DragDialog.vue'),
-                    meta: { title: '拖拽弹框' }
-                },
-                {
-                    // 国际化组件
-                    path: '/i18n',
-                    component: () => import( '../components/until/I18n.vue'),
-                    meta: { title: '国际化' }
-                },
+                // {
+                //     // 拖拽列表组件
+                //     path: '/drag',
+                //     component: () => import( '../components/until/DragList.vue'),
+                //     meta: { title: '拖拽列表' }
+                // },
+                // {
+                //     // 拖拽Dialog组件
+                //     path: '/dialog',
+                //     component: () => import('../components/until/DragDialog.vue'),
+                //     meta: { title: '拖拽弹框' }
+                // },
+                // {
+                //     // 国际化组件
+                //     path: '/i18n',
+                //     component: () => import( '../components/until/I18n.vue'),
+                //     meta: { title: '国际化' }
+                // },
                 {
                     // 权限页面
                     path: '/permission',
@@ -208,11 +122,6 @@ export default new Router({
                     path: '/403',
                     component: () => import('../components/error/403.vue'),
                     meta: { title: '403' }
-                },
-                {
-                    path: '/donate',
-                    component: () => import('../components/author/Donate.vue'),
-                    meta: { title: '支持作者' }
                 }
             ]
         },

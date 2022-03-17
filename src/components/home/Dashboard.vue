@@ -1,650 +1,891 @@
 <template>
-  <div>
-    <el-row :gutter="20">
-      <el-col :span="24">
-        <el-row :gutter="8" class="mgb20">
-          <el-col :span="6">
-            <el-card shadow="hover" :body-style="{ padding: '0px' }">
-              <div class="grid-content1 grid-con-1">
-                <i class="el-icon-s-promotion grid-con-icon"></i>
+  <div class="dashboard-editor-container">
+    <body for="html-export">
+      <div class="mume markdown-preview">
+        <div>
+          <h1 align="center">Aiorq Dashboard &#x1F44B;</h1>
+          <p align="center">
+            <img
+              src="https://img.shields.io/badge/Python-3.7 | 3.8 | 3.9 | 3.10-blue"
+            />&nbsp;
+            <img src="https://img.shields.io/badge/license-MIT-green" />&nbsp;
+            <img src="https://img.shields.io/badge/license-MIT-green" />
+          </p>
+          <hr />
+          <h2 class="mume-header" id="%E5%8A%9F%E8%83%BD">&#x529F;&#x80FD;</h2>
 
-                <div class="grid-cont-right" to="projectIndex">
-                  <div>
-                    <router-link class="grid-cont-right" to="projectIndex">
-                      <div>{{ projectCount }}</div>
-                      爬虫项目
-                    </router-link>
-                  </div>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card shadow="hover" :body-style="{ padding: '0px' }">
-              <div class="grid-content2 grid-con-4">
-                <i class="el-icon-s-promotion grid-con-icon"></i>
-                <div class="grid-cont-right" to="taskIndex">
-                  <div>
-                    <router-link class="grid-cont-right" to="taskIndex">
-                      <div>{{ taskCount }}</div>
-                      爬虫任务
-                    </router-link>
-                  </div>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card shadow="hover" :body-style="{ padding: '0px' }">
-              <div class="grid-content3 grid-con-2">
-                <i class="el-icon-s-data grid-con-icon"></i>
-                <div class="grid-cont-right" to="hosts">
-                  <div>
-                    <router-link class="grid-cont-right" to="hosts">
-                      <div>{{ hostCount }}</div>
-                      主机数量
-                    </router-link>
-                  </div>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card shadow="hover" :body-style="{ padding: '0px' }">
-              <div class="grid-content4 grid-con-3">
-                <i class="el-icon-notebook-2 grid-con-icon"></i>
-                <div class="grid-cont-right">
-                  <div>
-                    <router-link class="grid-cont-right" to="taskIndex">
-                      <div>5025664009</div>
-                      数据总量
-                    </router-link>
-                  </div>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
-      </el-col>
-    </el-row>
+          <ul>
+            <li class="task-list-item">
+              <input type="checkbox" class="task-list-item-checkbox" checked />
+              &#x767B;&#x5F55;/&#x6CE8;&#x9500;
+            </li>
+            <li class="task-list-item">
+              <input type="checkbox" class="task-list-item-checkbox" checked />
+              Dashboard
+            </li>
+            <li class="task-list-item">
+              <input type="checkbox" class="task-list-item-checkbox" />
+              &#x652F;&#x6301;&#x5207;&#x6362;&#x4E3B;&#x9898;&#x8272;
+            </li>
+            <li class="task-list-item">
+              <input type="checkbox" class="task-list-item-checkbox" />
+              &#x4EFB;&#x52A1;&#x65E5;&#x5FD7;
+            </li>
+            <li class="task-list-item">
+              <input type="checkbox" class="task-list-item-checkbox" />
+              &#x56FD;&#x9645;&#x5316;
+            </li>
+          </ul>
+          <hr />
+          <h2 class="mume-header" id="license">License</h2>
 
-    <el-row :gutter="12">
-      <el-col :span="6" class="mgb20" :offset="0">
-        <el-card shadow="hover">
-          <div shadow="hover" style="padding-bottom: 12px; color: #000">
-            <h4 class="title">系统信息</h4>
-          </div>
-          <div shadow="hover">
-            <el-row class="buttonClass">
-              <span>
-                <el-button type="success" size="mini" 
-                  >操作系统：{{systemParams.info.platform}}</el-button
-                >
-
-                <br /><br />
-                <el-button type="warning" size="mini" plain
-                  >已使用内存：{{systemParams.mem.mem_used}}</el-button
-                >
-                <el-button type="warning" size="mini" plain
-                  >内存使用率：{{systemParams.mem.mem_percent}}</el-button
-                >
-                <br /><br />
-                <el-button type="primary" size="mini" plain
-                  >物理CPU：{{systemParams.cpu.cpu_cores}}</el-button
-                >
-                <el-button type="primary" size="mini" plain
-                  >处理器位数：{{systemParams.info.bit_msg}}</el-button
-                >
-              </span>
-            </el-row>
-          </div>
-        </el-card>
-      </el-col>
-
-      <el-col :span="6" class="mgb20" :offset="0">
-        <el-card shadow="hover">
-          <div shadow="hover" style="padding-bottom: 12px; color: #000">
-            <h4 class="title">Redis</h4>
-          </div>
-          <div shadow="hover">
-            <el-row class="buttonClass">
-              <span>
-                <el-button type="primary" size="mini" plain
-                  >操作系统：{{ redisParams.os }}</el-button
-                >
-                <br /><br />
-                <el-button type="primary" size="mini" plain
-                  >redis 版本{{ redisParams.redis_version }}</el-button
-                >
-                <el-button type="primary" size="mini" plain
-                  >开放端口：{{ redisParams.tcp_port }}</el-button
-                >
-
-                <br /><br />
-                <el-button type="primary" size="mini" plain
-                  >已用内存：{{ redisParams.used_memory_human }}</el-button
-                >
-                <el-button type="primary" size="mini" plain
-                  >内存占用峰值：{{
-                    redisParams.used_memory_peak_human
-                  }}</el-button
-                >
-              </span>
-            </el-row>
-          </div>
-        </el-card>
-      </el-col>
-
-      <el-col :span="6" class="mgb20" :offset="0">
-        <el-card shadow="hover">
-          <div shadow="hover" style="padding-bottom: 12px; color: #000">
-            <h4 class="title">MongoDB</h4>
-          </div>
-          <div shadow="hover">
-            <el-row class="buttonClass">
-              <span>
-                <el-button type="primary" size="mini" plain
-                  >数据库版本：{{ mongoParams.version }}</el-button
-                >
-                <el-button type="primary" size="mini" plain
-                  >运行时长: {{ mongoParams.uptime }}</el-button
-                >
-                <br />
-                <br />
-                <el-button type="primary" size="mini" plain
-                  >活跃连接数: {{ mongoParams.connections.active }}</el-button
-                >
-                <el-button type="primary" size="mini" plain
-                  >占用物理内存: {{ mongoParams.mem.resident }}</el-button
-                >
-                <br />
-                <br />
-    
-                <el-button type="primary" size="mini" plain
-                  >表数量: {{ mongoParams.collections }}</el-button
-                >
-                            <el-button type="primary" size="mini" plain
-                  >总文档数：{{ mongoParams.objects }}</el-button
-                >
-              </span>
-            </el-row>
-          </div>
-        </el-card>
-      </el-col>
-
-      <el-col :span="6" class="mgb20" :offset="0">
-        <el-card shadow="hover">
-          <div shadow="hover" style="padding-bottom: 12px; color: #000">
-            <h4 class="title">运行情况</h4>
-          </div>
-          <div shadow="hover">
-            <el-row class="buttonClass">
-              <span>
-                <el-button type="primary" size="mini" plain
-                  >正在运行任务：{{taskParams.length}}</el-button
-                >
-                <el-button type="primary" size="mini" plain
-                  >历史运行任务：16</el-button
-                >
-                <br />
-                <br />
-
-                <el-button type="primary" size="mini" plain
-                  >总运行时长：02:09:12 </el-button
-                >
-     
-                <br />
-                <br />
-
-                <el-button type="primary" size="mini" plain
-                  >总运行时长：</el-button
-                >
-              </span>
-            </el-row>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
-
-    <el-card shadow="hover" style="height: 470px">
-      <div slot="header" class="clearfix">
-        <span>待办事项</span>
-        <el-button
-          style="float: right; padding: 3px 0"
-          type="text"
-          @click="dialogAddVisible = true"
-          >添加</el-button
-        >
+          <p>
+            <a href="https://github.com/PY-GZKY/fastapi-crawl-admin/LICENSE"
+              >MIT</a
+            >
+          </p>
+        </div>
       </div>
-      <el-table :show-header="false" :data="todoList" style="width: 100%">
-        <el-table-column width="40">
-          <template slot-scope="scope">
-            <el-checkbox
-              v-model="scope.row.status"
-              @change="handleUpdate(scope.row.id)"
-            ></el-checkbox>
-          </template>
-        </el-table-column>
-        <el-table-column>
-          <template slot-scope="scope">
-            <div
-              class="todo-item"
-              :class="{ 'todo-item-del': scope.row.status }"
-            >
-              {{ scope.row.title }}
-            </div>
-          </template>
-        </el-table-column>
-        <el-table-column width="200" align="right">
-          <template slot-scope="scope">
-            <el-button
-              type="text"
-              icon="el-icon-edit"
-              @click="
-                dialogEditVisible = true;
-                editForm.todoId = scope.row.id;
-              "
-              >编辑</el-button
-            >
-            <el-button
-              type="text"
-              icon="el-icon-delete"
-              class="red"
-              @click="handleDelete(scope.row.id)"
-              >删除</el-button
-            >
-          </template>
-        </el-table-column>
-      </el-table>
-    </el-card>
-
-    <el-dialog title="添加 TODO" :visible.sync="dialogAddVisible" width="30%">
-      <el-form ref="form" label-width="90px">
-        <el-form-item label="你要做什么" :model="addForm">
-          <el-input v-model="addForm.title"></el-input>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogAddVisible = false">取 消</el-button>
-        <el-button type="primary" @click="handleCreate">确 定</el-button>
-      </span>
-    </el-dialog>
-
-    <el-dialog title="编辑 TODO" :visible.sync="dialogEditVisible" width="30%">
-      <el-form ref="form" label-width="90px">
-        <el-form-item label="事项更改为" :model="editForm">
-          <el-input v-model="editForm.todoTitle"></el-input>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogEditVisible = false">取 消</el-button>
-        <el-button type="primary" @click="handleEdit">确 定</el-button>
-      </span>
-    </el-dialog>
+    </body>
   </div>
 </template>
 
-<script>
-import Schart from "vue-schart";
-import vChart from "../eCharts/BaseCharts";
-import bus from "../common/bus";
-import {
-  taskIndex,
-  systemParams,
-  redisParams,
-  mongoParams,
-  projectCount,
-  getTodoList,
-  addTodo,
-  delTodo,
-  editTodo,
-  updateTodo,
-} from "../../api/index";
-
-export default {
-  name: "dashboard",
-  inject: ["reload"],
-  data() {
-    return {
-      name: localStorage.getItem("username"),
-      projectCount: null,
-      taskCount: null,
-      hostCount: null,
-      taskParams: [],
-      systemParams: {},
-      redisParams: {},
-      mongoParams: {},
-      todoList: [],
-      data: [],
-      dialogAddVisible: false,
-      dialogEditVisible: false,
-      addForm: {
-        title: "",
-      },
-      editForm: {
-        todoId: "",
-        todoTitle: "",
-      },
-    };
-  },
-  components: {
-    vChart,
-  },
-  computed: {},
-  activated() {},
-  deactivated() {},
-
-  created() {
-    this.loadSystemParams();
-    this.loadProjectCount();
-    this.loadTodoList();
-  },
-
-  methods: {
-    format(percentage) {
-      return percentage === 100 ? `${percentage}%` : `${percentage}%`;
-    },
-
-    customColorMethod(percentage) {
-      if (percentage < 30) {
-        return "#339900";
-      } else if (percentage < 60) {
-        return "#67c23a";
-      } else if (percentage < 90) {
-        return "#FF7E00";
-      } else {
-        return "#FF3333";
-      }
-    },
-
-    // todo create
-    handleCreate(title) {
-      var self = this;
-      self.$api
-        .addTodo({
-          title: this.addForm.title,
-        })
-        .then((res) => {
-          console.log(res);
-          self.$message.success({
-            dangerouslyUseHTMLString: true,
-            message: res.data.message,
-          });
-          self.reload();
-        })
-        .catch(function (error) {
-          console.log("error");
-        });
-    },
-    // todo del
-    handleDelete(todoId) {
-      var self = this;
-      console.log("todoId:", todoId);
-      // 二次确认删除
-      self
-        .$confirm("确定要删除吗？", "提示", {
-          type: "warning",
-        })
-        .then(() => {
-          self.$api
-            .delTodo({
-              todoId,
-            })
-            .then((res) => {
-              self.$message.success({
-                dangerouslyUseHTMLString: true,
-                message: res.data.message,
-              });
-              self.reload();
-            })
-            .catch(function (error) {
-              console.log("error");
-            });
-        })
-        .catch(() => {});
-    },
-
-    // todo edit
-    handleEdit() {
-      var self = this;
-      self.$api
-        .editTodo({
-          todoId: this.editForm.todoId,
-          todoTitle: this.editForm.todoTitle,
-        })
-        .then((res) => {
-          console.log(res);
-          self.$message.success({
-            dangerouslyUseHTMLString: true,
-            message: res.data.message,
-          });
-          self.reload();
-        })
-        .catch(function (error) {
-          console.log("error");
-        });
-    },
-
-    // todo update
-    handleUpdate(todoId) {
-      var self = this;
-      self.$api
-        .updateTodo({
-          todoId,
-        })
-        .then((res) => {
-          // console.log(res);
-          // self.$message.success({
-          //   dangerouslyUseHTMLString: true,
-          //   message: res.data.message,
-          // });
-        })
-        .catch(function (error) {
-          console.log("error");
-        });
-    },
-
-    // todo list
-    loadTodoList() {
-      getTodoList().then((res) => {
-        this.todoList = res.data.data;
-      });
-    },
-
-    loadSystemParams() {
-      systemParams().then((res) => {
-        // console.log(res);
-        this.systemParams = res.data.data;
-      });
-
-      redisParams().then((res) => {
-        // console.log(res);
-        this.redisParams = res.data.data;
-      });
-
-      mongoParams().then((res) => {
-        // console.log(res);
-        this.mongoParams = res.data.data;
-      });
-
-      taskIndex({status:0}).then((res) => {
-        // console.log(res.data.data);
-        this.taskParams = res.data.data;
-      });
-    },
-
-    loadProjectCount() {
-      projectCount().then((res) => {
-        this.projectCount = res.data.data.projectCount;
-        this.taskCount = res.data.data.taskCount;
-        this.hostCount = res.data.data.hostCount;
-      });
-    },
-  },
-};
-</script>
-
 
 <style scoped>
-.buttonClass {
-  letter-spacing: 0.5px;
-  font-size: 14px;
-  white-space: pre-line;
+/**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
 }
 
-.el-progress {
-  width: 80%;
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 0.8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
 }
 
-.el-row {
-  margin-bottom: 10px;
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+  background: #f5f5f5;
 }
 
-.card {
-  padding: 0px;
-  background: #085a0f;
-  color: #fff;
+.token.comment,
+.token.blockquote {
+  color: #969896;
 }
 
-.card1 {
-  padding: 0px;
-  background: #857c03;
-  color: #fff;
+.token.cdata {
+  color: #183691;
 }
 
-.card2 {
-  padding: 0px;
-  background: #0b5172;
-  color: #fff;
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
 }
 
-.card3 {
-  padding: 0px;
-  background: #660b72;
-  color: #fff;
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
 }
 
-.grid-content1 {
-  display: flex;
-  align-items: center;
-  height: 60px;
-  background: #409eff;
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
 }
 
-.grid-content2 {
-  display: flex;
-  align-items: center;
-  height: 60px;
-  background: #df7e20;
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
 }
 
-.grid-content3 {
-  display: flex;
-  align-items: center;
-  height: 60px;
-  background: #55c464;
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
 }
 
-.grid-content4 {
-  display: flex;
-  align-items: center;
-  height: 60px;
-  background: #e74f4f;
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
 }
 
-.grid-cont-right {
-  flex: 1;
-  text-align: center;
-  font-size: 14px;
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
   font-weight: bold;
-  color: rgb(255, 255, 255);
+  color: #1d3e81;
 }
 
-.grid-num {
-  font-size: 16px;
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
   font-weight: bold;
 }
 
-.grid-con-icon {
-  font-size: 30px;
-  width: 70px;
-  height: 100px;
-  text-align: center;
-  line-height: 100px;
-  color: #fff;
+.token.italic {
+  font-style: italic;
 }
 
-.grid-con-1 .grid-con-icon {
-  background: rgb(45, 140, 240);
+/* JSON */
+.language-json .token.property {
+  color: #183691;
 }
 
-.grid-con-2 .grid-con-icon {
-  background: rgb(100, 213, 114);
+.language-markup .token.tag .token.punctuation {
+  color: #333;
 }
 
-.grid-con-3 .grid-con-icon {
-  background: rgb(242, 94, 67);
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
 }
 
-.grid-con-4 .grid-con-icon {
-  background: #e28a36;
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
 }
 
-.user-info {
-  display: flex;
-  align-items: center;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #ccc;
-  margin-bottom: 20px;
+code.language-yaml {
+  color: #183691;
 }
 
-.user-avator {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
 }
 
-.user-info-cont {
-  padding-left: 50px;
-  flex: 1;
-  font-size: 14px;
-  color: #999;
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
 }
 
-.user-info-cont div:first-child {
-  font-size: 30px;
-  color: #222;
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
 }
 
-.user-info-list {
-  font-size: 14px;
-  color: #999;
-  line-height: 25px;
+.language-makefile .token.variable {
+  color: #183691;
 }
 
-.user-info-list span {
-  margin-left: 70px;
+.language-makefile .token.builtin {
+  color: #0086b3;
 }
 
-.mgb20 {
-  margin-bottom: 10px;
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
 }
 
-.todo-item {
-  font-size: 14px;
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
 }
 
-.todo-item-del {
-  text-decoration: line-through;
-  color: #999;
-}
-
-.red {
-  color: #ff0000;
-}
-
-.schart {
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
   width: 100%;
-  height: 300px;
 }
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%, 0.08);
+  background: linear-gradient(
+    to right,
+    hsla(24, 20%, 50%, 0.1) 70%,
+    hsla(24, 20%, 50%, 0)
+  );
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before,
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: 0.4em;
+  left: 0.6em;
+  min-width: 1em;
+  padding: 0 0.5em;
+  background-color: hsla(24, 20%, 50%, 0.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: 0.3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: 0.4em;
+}
+
+html body {
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans,
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  overflow: initial;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+html body > :first-child {
+  margin-top: 0;
+}
+
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6 {
+  line-height: 1.2;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  color: #000;
+}
+
+html body h1 {
+  font-size: 2.25em;
+  font-weight: 300;
+  padding-bottom: 0.3em;
+}
+
+html body h2 {
+  font-size: 1.75em;
+  font-weight: 400;
+  padding-bottom: 0.3em;
+}
+
+html body h3 {
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+html body h4 {
+  font-size: 1.25em;
+  font-weight: 600;
+}
+
+html body h5 {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+html body h6 {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5 {
+  font-weight: 600;
+}
+
+html body h5 {
+  font-size: 1em;
+}
+
+html body h6 {
+  color: #5c5c5c;
+}
+
+html body strong {
+  color: #000;
+}
+
+html body del {
+  color: #5c5c5c;
+}
+
+html body a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+html body a {
+  color: #08c;
+  text-decoration: none;
+}
+
+html body a:hover {
+  color: #00a3f5;
+  text-decoration: none;
+}
+
+html body img {
+  max-width: 100%;
+}
+
+html body > p {
+  margin-top: 0;
+  margin-bottom: 16px;
+  word-wrap: break-word;
+}
+
+html body > ul,
+html body > ol {
+  margin-bottom: 16px;
+}
+
+html body ul,
+html body ol {
+  padding-left: 2em;
+}
+
+html body ul.no-list,
+html body ol.no-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+html body ul ul,
+html body ul ol,
+html body ol ol,
+html body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+html body li {
+  margin-bottom: 0;
+}
+
+html body li.task-list-item {
+  list-style: none;
+}
+
+html body li > p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+html body .task-list-item-checkbox {
+  margin: 0 0.2em 0.25em -1.8em;
+  vertical-align: middle;
+}
+
+html body .task-list-item-checkbox:hover {
+  cursor: pointer;
+}
+
+html body blockquote {
+  margin: 16px 0;
+  font-size: inherit;
+  padding: 0 15px;
+  color: #5c5c5c;
+  background-color: #f0f0f0;
+  border-left: 4px solid #d6d6d6;
+}
+
+html body blockquote > :first-child {
+  margin-top: 0;
+}
+
+html body blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+html body hr {
+  height: 4px;
+  margin: 32px 0;
+  background-color: #d6d6d6;
+  border: 0 none;
+}
+
+html body table {
+  margin: 10px 0 15px 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+html body table th {
+  font-weight: bold;
+  color: #000;
+}
+
+html body table td,
+html body table th {
+  border: 1px solid #d6d6d6;
+  padding: 6px 13px;
+}
+
+html body dl {
+  padding: 0;
+}
+
+html body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+html body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+html body code {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 0.85em !important;
+  color: #000;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+  padding: 0.2em 0;
+}
+
+html body code::before,
+html body code::after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+html body pre > code {
+  padding: 0;
+  margin: 0;
+  font-size: 0.85em !important;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+html body .highlight {
+  margin-bottom: 16px;
+}
+
+html body .highlight pre,
+html body pre {
+  padding: 1em;
+  overflow: auto;
+  font-size: 0.85em !important;
+  line-height: 1.45;
+  border: #d6d6d6;
+  border-radius: 3px;
+}
+
+html body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+html body pre code,
+html body pre tt {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+html body pre code:before,
+html body pre tt:before,
+html body pre code:after,
+html body pre tt:after {
+  content: normal;
+}
+
+html body p,
+html body blockquote,
+html body ul,
+html body ol,
+html body dl,
+html body pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+html body kbd {
+  color: #000;
+  border: 1px solid #d6d6d6;
+  border-bottom: 2px solid #c7c7c7;
+  padding: 2px 4px;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+}
+
+@media print {
+  html body {
+    background-color: #fff;
+  }
+
+  html body h1,
+  html body h2,
+  html body h3,
+  html body h4,
+  html body h5,
+  html body h6 {
+    color: #000;
+    page-break-after: avoid;
+  }
+
+  html body blockquote {
+    color: #5c5c5c;
+  }
+
+  html body pre {
+    page-break-inside: avoid;
+  }
+
+  html body table {
+    display: table;
+  }
+
+  html body img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  html body pre,
+  html body code {
+    word-wrap: break-word;
+    white-space: pre;
+  }
+}
+
+.markdown-preview {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.markdown-preview .pagebreak,
+.markdown-preview .newpage {
+  page-break-before: always;
+}
+
+.markdown-preview pre.line-numbers {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+}
+
+.markdown-preview pre.line-numbers > code {
+  position: relative;
+}
+
+.markdown-preview pre.line-numbers .line-numbers-rows {
+  position: absolute;
+  pointer-events: none;
+  top: 1em;
+  font-size: 100%;
+  left: 0;
+  width: 3em;
+  letter-spacing: -1px;
+  border-right: 1px solid #999;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.markdown-preview pre.line-numbers .line-numbers-rows > span {
+  pointer-events: none;
+  display: block;
+  counter-increment: linenumber;
+}
+
+.markdown-preview pre.line-numbers .line-numbers-rows > span:before {
+  content: counter(linenumber);
+  color: #999;
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
+}
+
+.markdown-preview .mathjax-exps .MathJax_Display {
+  text-align: center !important;
+}
+
+.markdown-preview:not([for="preview"]) .code-chunk .btn-group {
+  display: none;
+}
+
+.markdown-preview:not([for="preview"]) .code-chunk .status {
+  display: none;
+}
+
+.markdown-preview:not([for="preview"]) .code-chunk .output-div {
+  margin-bottom: 16px;
+}
+
+.scrollbar-style::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-style::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.scrollbar-style::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(150, 150, 150, 0.66);
+  border: 4px solid rgba(150, 150, 150, 0.66);
+  background-clip: content-box;
+}
+
+html body[for="html-export"]:not([data-presentation-mode]) {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview {
+  position: relative;
+  top: 0;
+}
+
+@media screen and (min-width: 914px) {
+  html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview {
+    padding: 2em calc(50% - 457px + 2em);
+  }
+}
+
+@media screen and (max-width: 914px) {
+  html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview {
+    padding: 2em;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview {
+    font-size: 14px !important;
+    padding: 1em;
+  }
+}
+
+@media print {
+  html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn {
+    display: none;
+  }
+}
+
+html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn {
+  position: fixed;
+  bottom: 8px;
+  left: 8px;
+  font-size: 28px;
+  cursor: pointer;
+  color: inherit;
+  z-index: 99;
+  width: 32px;
+  text-align: center;
+  opacity: 0.4;
+}
+
+html
+  body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+  #sidebar-toc-btn {
+  opacity: 1;
+}
+
+html
+  body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+  .md-sidebar-toc {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  padding: 32px 0 48px 0;
+  font-size: 14px;
+  box-shadow: 0 0 4px rgba(150, 150, 150, 0.33);
+  box-sizing: border-box;
+  overflow: auto;
+  background-color: inherit;
+}
+
+html
+  body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+  .md-sidebar-toc::-webkit-scrollbar {
+  width: 8px;
+}
+
+html
+  body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+  .md-sidebar-toc::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+html
+  body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+  .md-sidebar-toc::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(150, 150, 150, 0.66);
+  border: 4px solid rgba(150, 150, 150, 0.66);
+  background-clip: content-box;
+}
+
+html
+  body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+  .md-sidebar-toc
+  a {
+  text-decoration: none;
+}
+
+html
+  body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+  .md-sidebar-toc
+  ul {
+  padding: 0 1.6em;
+  margin-top: 0.8em;
+}
+
+html
+  body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+  .md-sidebar-toc
+  li {
+  margin-bottom: 0.8em;
+}
+
+html
+  body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+  .md-sidebar-toc
+  ul {
+  list-style-type: none;
+}
+
+html
+  body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+  .markdown-preview {
+  left: 300px;
+  width: calc(100% - 300px);
+  padding: 2em calc(50% - 457px - 150px);
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1274px) {
+  html
+    body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+    .markdown-preview {
+    padding: 2em;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  html
+    body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+    .markdown-preview {
+    width: 100%;
+  }
+}
+
+html
+  body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc])
+  .markdown-preview {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+html
+  body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc])
+  .md-sidebar-toc {
+  display: none;
+}
+
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 </style>
