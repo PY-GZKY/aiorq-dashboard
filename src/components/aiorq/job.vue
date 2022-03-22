@@ -177,7 +177,7 @@
         >
         </el-table-column>
 
-             <el-table-column min-width="80px" align="center" label="运行状态">
+        <el-table-column min-width="80px" align="center" label="运行状态">
           <template slot-scope="{ row }">
             <el-tag v-if="row.finish_time" type="success" size="mini"
               >success</el-tag
@@ -193,8 +193,6 @@
           align="center"
         >
         </el-table-column>
-
-     
       </el-table>
 
       <div class="pagination">
@@ -229,8 +227,8 @@ export default {
       },
       results: [],
       total: 0,
-      currentPage: 1, //初始页
-      pagesize: 10, //    每页的数据
+      currentPage: 1,
+      pagesize: 10,
       form: {},
     };
   },
@@ -249,8 +247,8 @@ export default {
     handleSizeChange(size) {
       this.pagesize = size;
       this.get_results();
-      // console.log(this.pagesize); //每页下拉显示数据
     },
+
     handleCurrentChange(currentPage) {
       this.currentPage = currentPage;
       this.getData();

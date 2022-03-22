@@ -129,8 +129,8 @@ export default {
       },
       workers: [],
       total: 0,
-      currentPage: 1, //初始页
-      pagesize: 10, //    每页的数据
+      currentPage: 1,
+      pagesize: 10,
       form: {},
     };
   },
@@ -149,24 +149,11 @@ export default {
     // 初始页currentPage、初始每页数据数pagesize和数据data
     handleSizeChange(size) {
       this.pagesize = size;
-      this.getData();
-      // console.log(this.pagesize); //每页下拉显示数据
+      this.get_workers();
     },
     handleCurrentChange(currentPage) {
       this.currentPage = currentPage;
       this.getData();
-      // console.log(this.currentPage); //点击第几页
-    },
-    // todo 上传前钩子函数
-    beforeUpload(file) {
-      const limit = file.size / 1024 / 1024 < this.sizeLimit;
-      if (!limit) {
-        this.$message.error(`上传的文件小不能超过 ${this.sizeLimit} MB!`);
-      }
-      if (limit) {
-        this.loading = true;
-      }
-      return limit;
     },
   },
 };
