@@ -1,26 +1,6 @@
 import axios from 'axios';
 import router from '../router';
 
-let baseURL;
-let webSocket;
-
-const getBaseUrl = function () {
-    $.ajax({
-        type : "get",
-        async: false, // fasle表示同步请求，true表示异步请求
-        url : "./config.json",
-        data : {},
-        success : function(result) {
-            baseURL = result.url;
-            webSocket = result.webSocket;
-        },
-        error : function(e){
-            console.log(e);
-        }
-    });
-};
-
-// getBaseUrl();
 
 const service = axios.create({
     // process.env.NODE_ENV === 'development', // TODO 来判断是否开发环境
@@ -32,7 +12,6 @@ const service = axios.create({
 service.interceptors.request.use(
     config => {
         if (localStorage.getItem('token')) {
-            // console.log("token：" + localStorage.getItem('token'));
             config.headers.common['Token'] = localStorage.getItem('token');
         } else {
             config.headers.common['Token'] = "";
@@ -40,11 +19,10 @@ service.interceptors.request.use(
         return config
     },
     err => {
-        // return Promise.reject(err)
     }
 );
 
-// 拦截响应
+
 service.interceptors.response.use(
     response => {
         // console.log("首次拦截");
@@ -56,7 +34,6 @@ service.interceptors.response.use(
     },
 
     err => {
-        // console.log(err);
         if (err && err.response) {
             switch (err.response.status) {
                 case 400:
@@ -84,7 +61,6 @@ service.interceptors.response.use(
                 case 504: err.message = '网络超时(504)'; return err.response;
                 case 505: err.message = 'HTTP版本不受支持(505)'; return err.response;
                 default: err.message = `连接出错(${err.response.status})!`;
-
             }
         } else {
             err.message = '连接服务器失败!'
@@ -93,7 +69,5 @@ service.interceptors.response.use(
 
     }
 )
-
-
 
 export default service;

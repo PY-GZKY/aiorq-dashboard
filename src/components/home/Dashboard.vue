@@ -9,7 +9,7 @@
               src="https://img.shields.io/badge/Python-3.7 | 3.8 | 3.9 | 3.10-blue"
             />&nbsp;
             <img src="https://img.shields.io/badge/license-MIT-green" />&nbsp;
-            <img src="https://img.shields.io/badge/license-MIT-green" />
+            <!-- <img src="https://img.shields.io/badge/license-MIT-green" /> -->
           </p>
           <hr />
           <h2 class="mume-header" id="%E5%8A%9F%E8%83%BD">&#x529F;&#x80FD;</h2>
@@ -17,7 +17,7 @@
           <ul>
             <li class="task-list-item">
               <input type="checkbox" class="task-list-item-checkbox" checked />
-              &#x767B;&#x5F55;/&#x6CE8;&#x9500;
+              Login/Logout
             </li>
             <li class="task-list-item">
               <input type="checkbox" class="task-list-item-checkbox" checked />
@@ -25,15 +25,7 @@
             </li>
             <li class="task-list-item">
               <input type="checkbox" class="task-list-item-checkbox" />
-              &#x652F;&#x6301;&#x5207;&#x6362;&#x4E3B;&#x9898;&#x8272;
-            </li>
-            <li class="task-list-item">
-              <input type="checkbox" class="task-list-item-checkbox" />
-              &#x4EFB;&#x52A1;&#x65E5;&#x5FD7;
-            </li>
-            <li class="task-list-item">
-              <input type="checkbox" class="task-list-item-checkbox" />
-              &#x56FD;&#x9645;&#x5316;
+              Log
             </li>
           </ul>
           <hr />

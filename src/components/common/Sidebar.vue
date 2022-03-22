@@ -63,19 +63,23 @@ export default {
         {
           icon: "el-icon-lx-home",
           index: "dashboard",
-          title: "主页",
+          title: "dashboard",
         },
         {
           icon: "el-icon-s-promotion",
-          index: "aiorq",
-          title: "aiorq",
+          index: "worker",
+          title: "worker",
         },
-
 
         {
           icon: "el-icon-lx-cascades",
-          index: "table",
-          title: "基础表格",
+          index: "job",
+          title: "job",
+        },
+        {
+          icon: "el-icon-lx-cascades",
+          index: "logs",
+          title: "logs",
         },
 
         // {
@@ -114,7 +118,6 @@ export default {
         //   ],
         // },
 
-
         // {
         //     icon: 'el-icon-lx-emoji',
         //     index: 'icon',
@@ -144,7 +147,7 @@ export default {
         //   index: "setting",
         //   title: "设置",
         // },
-    
+
         // {
         //     icon: 'el-icon-rank',
         //     index: '6',

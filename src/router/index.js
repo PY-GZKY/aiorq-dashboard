@@ -20,25 +20,29 @@ export default new Router({
                     meta: { title: '系统首页' }
                 },
                 {
-                    path: '/aiorq',
-                    component: () => import( '../components/aiorq/job.vue'),
-                    meta: { title: 'aiorq' },
-
+                    path: '/worker',
+                    component: () => import( '../components/aiorq/worker.vue'),
+                    meta: { title: 'worker' },
                 },
+                {
+                    path: '/job',
+                    component: () => import('../components/aiorq/job.vue'),
+                    meta: { title: 'job' }
+                },
+     
+                {
+                    path: '/logs',
+                    component: () => import('../components/aiorq/logs.vue'),
+                    meta: { title: 'logs' }
+                },
+       
             
                 // {
                 //     path: '/icon',
                 //     component: () => import(/* webpackChunkName: "icon" */ '../components/until/Icon.vue'),
                 //     meta: { title: '自定义图标' }
                 // },
-                {
-                    path: '/table',
-                    component: () => import(/* webpackChunkName: "table" */ '../components/forms/BaseTable.vue'),
-                    meta: { title: '基础表格' }
-                },
-       
-
-              
+            
                 // {
                 //     path: '/box',
                 //     component: () => import(/* webpackChunkName: "table" */ '../components/until/Box.vue'),
