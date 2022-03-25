@@ -12,4 +12,4 @@ aiorq dashboard for vue.
 ---
 
 ## License
-[MIT](https://github.com/PY-GZKY/fastapi-crawl-admin/LICENSE)
+[Apache-2.0]()
