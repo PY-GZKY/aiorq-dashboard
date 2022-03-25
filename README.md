@@ -7,14 +7,7 @@
 
 ---
 
-## 功能
-
--   [x] 登录/注销
--   [x] Dashboard
--   [ ] 支持切换主题色
--   [ ] 任务日志
--   [ ] 国际化
-
+aiorq dashboard for vue.
 
 ---
 
