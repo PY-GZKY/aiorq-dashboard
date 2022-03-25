@@ -12,4 +12,4 @@ aiorq dashboard for vue.
 ---
 
 ## License
-[Apache-2.0]()
+[Apache-2.0](https://github.com/PY-GZKY/aiorq-dashboard/blob/main/LICENSE)
