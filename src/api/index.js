@@ -5,17 +5,27 @@ const apiVersion = `/api/v1`;
 export const apiBase = `${baseURL}`; // ${apiVersion}
 
 
-export const get_workers = query => {
+export function get_workers(query) {
     return request({
-        url: `${apiBase}/get_job_workers`,
-        method: 'GET'
+        url: `${apiBase}/workers`,
+        method: 'GET',
+        params: query
     })
 };
+
+export function get_queued_jobs(query) {
+    return request({
+        url: `${apiBase}/job/queued_jobs`,
+        method: 'GET',
+        params: query
+    })
+}
+
 
 
 export function get_results(query) {
     return request({
-        url: `${apiBase}/job/all_job_results`,
+        url: `${apiBase}/job/results`,
         method: 'GET',
         params: query
     })

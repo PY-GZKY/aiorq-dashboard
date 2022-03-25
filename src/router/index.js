@@ -12,12 +12,12 @@ export default new Router({
         {
             path: '/',
             component: () => import('../components/common/Home.vue'),
-            meta: { title: '自述文件' },
+            meta: { title: 'readme' },
             children: [
                 {
                     path: 'dashboard',
                     component: () => import('../components/home/Dashboard.vue'),
-                    meta: { title: '系统首页' }
+                    meta: { title: 'readme' }
                 },
                 {
                     path: '/worker',
@@ -29,6 +29,11 @@ export default new Router({
                     component: () => import('../components/aiorq/job.vue'),
                     meta: { title: 'job' }
                 },
+                {
+                    path: '/result',
+                    component: () => import('../components/aiorq/result.vue'),
+                    meta: { title: 'result' }
+                },
      
                 {
                     path: '/logs',
@@ -36,6 +41,11 @@ export default new Router({
                     meta: { title: 'logs' }
                 },
        
+                {
+                    path: '/setting',
+                    component: () => import('../components/aiorq/setting.vue'),
+                    meta: { title: 'setting' }
+                },
             
                 // {
                 //     path: '/icon',
@@ -85,12 +95,6 @@ export default new Router({
                 //     path: '/workLog',
                 //     component: () => import('../components/workLog/LogIndex.vue'),
                 //     meta: {title: '任务日志'}
-                // },
-
-                // {
-                //     path: '/setting',
-                //     component: () => import('../components/setting/Setting.vue'),
-                //     meta: {title: '设置'}
                 // },
 
                 // {

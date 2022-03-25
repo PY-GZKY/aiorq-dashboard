@@ -76,21 +76,30 @@ export default {
           index: "job",
           title: "job",
         },
+
+        {
+          icon: "el-icon-lx-home",
+          index: "result",
+          title: "result",
+        },
         {
           icon: "el-icon-lx-home",
           index: "logs",
           title: "logs",
         },
+           {
+          icon: "el-icon-lx-home",
+          index: "setting",
+          title: "setting",
+        },
+   
       ],
     };
   },
   computed: {
-    onRoutes() {
-      // return this.$route.path.replace('/', '');
-    },
+    onRoutes() {},
   },
   created() {
-    // 通过 Event Bus 进行组件间通信，来折叠侧边栏
     bus.$on("collapse", (msg) => {
       this.collapse = msg;
       bus.$emit("collapse-content", msg);

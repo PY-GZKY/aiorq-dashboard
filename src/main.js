@@ -12,7 +12,8 @@ import './components/common/directives';
 import 'babel-polyfill';
 import cookie from 'vue-cookie'
 import axios from 'axios'
-import Api from './api';
+// import Api from './api/index.js';
+import * as Api from './api/index.js'
 import global from './utils/global.js'
 
 Vue.prototype.global = global

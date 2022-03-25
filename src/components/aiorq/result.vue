@@ -4,7 +4,7 @@
       <el-row :gutter="20">
         <el-col :span="20" :xs="24">
           <el-form ref="query" :model="query" :inline="true" label-width="68px">
-                 <el-form-item>
+            <el-form-item>
               <el-input
                 v-model="query.worker"
                 placeholder="进程名称"
@@ -15,11 +15,9 @@
               />
             </el-form-item>
 
-
-              <el-form-item>
+            <el-form-item>
               <el-input
-                v-model="query.worker"
-                placeholder="任务名称"
+                placeholder="任务"
                 clearable
                 size="mini"
                 style="width: 200px"
@@ -27,11 +25,20 @@
               />
             </el-form-item>
 
+            <el-form-item>
+              <el-input
+                placeholder="任务ID"
+                clearable
+                size="mini"
+                style="width: 200px"
+                @keyup.enter.native="handleFilter"
+              />
+            </el-form-item>
 
             <el-form-item label="">
               <el-select
                 v-model="query.status"
-                placeholder="运行状态"
+                placeholder="结果状态"
                 clearable
                 style="width: 130px"
                 size="mini"
@@ -46,7 +53,6 @@
                 />
               </el-select>
             </el-form-item>
-            
 
             <el-form-item label="">
               <el-date-picker
@@ -140,7 +146,7 @@
 
         <el-table-column
           show-overflow-tooltip
-          width="140px"
+          width="100px"
           align="center"
           label="字典参数"
         >
@@ -160,7 +166,7 @@
         <el-table-column
           prop="enqueue_time"
           label="入队时间"
-          min-width="140"
+          min-width="160"
           align="center"
         >
         </el-table-column>
@@ -168,45 +174,27 @@
         <el-table-column
           prop="start_time"
           label="开始时间"
-          min-width="140"
+          min-width="160"
           align="center"
         >
         </el-table-column>
 
+        <el-table-column
+          prop="finish_time"
+          label="结束时间"
+          min-width="160"
+          align="center"
+        >
+        </el-table-column>
 
-       <el-table-column min-width="140px" align="center" label="状态">
-        <template slot-scope="{ row }">
-          <el-button
-            v-if="row.state == 'deferred'"
-            type="success"
-            size="mini"
-            plain
-            ><i class="el-icon-success"></i>延迟</el-button
-          >
-          <el-button
-            v-else-if="row.state == 'queued'"
-            type="warning"
-            size="mini"
-            plain
-            ><i class="el-icon-more"></i>等待</el-button
-          >
-          <el-button
-            v-else-if="row.state == 'in_progress'"
-            type="warning"
-            :loading="true"
-            size="mini"
-            plain
-            >进行中</el-button
-          >
-          <el-button
-            v-else-if="row.state == 'failed'"
-            type="error"
-            size="mini"
-            plain
-            ><i class="el-icon-error"></i>失败</el-button
-          >
-        </template>
-      </el-table-column>
+        <el-table-column min-width="80px" align="center" label="运行状态">
+          <template slot-scope="{ row }">
+            <el-tag v-if="row.finish_time" type="success" size="mini"
+              >success</el-tag
+            >
+            <el-tag v-else type="info" size="mini">failed</el-tag>
+          </template>
+        </el-table-column>
 
         <el-table-column
           show-overflow-tooltip
@@ -236,9 +224,9 @@
 </template>
 
 <script>
-import { get_queued_jobs } from "../../api/index";
+import { get_results } from "../../api/index";
 export default {
-  name: "Job",
+  name: "worker",
   data() {
     return {
       loading: false,
@@ -256,12 +244,12 @@ export default {
     };
   },
   created() {
-    this.get_queued_jobs();
+    this.get_results();
   },
 
   methods: {
-    get_queued_jobs() {
-      get_queued_jobs(this.query).then((res) => {
+    get_results() {
+      get_results(this.query).then((res) => {
         this.results = res.data.rows;
         this.total = res.data.rows.length;
         setTimeout(() => {}, 1.5 * 1000);
@@ -269,7 +257,7 @@ export default {
     },
 
     handleFilter() {
-      this.get_queued_jobs();
+      this.get_results();
     },
 
     handleSizeChange(size) {

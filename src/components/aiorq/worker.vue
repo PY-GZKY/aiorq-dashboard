@@ -1,22 +1,60 @@
 <template>
   <div>
     <div class="container">
-      <div class="handle-box">
-        <el-select
-          v-model="query.status"
-          placeholder="状态"
-          class="handle-select mr10"
-        >
-          <el-option key="true" label="运行" value="运行"></el-option>
-          <el-option key="false" label="离线" value="离线"></el-option>
-        </el-select>
-        <el-input
-          v-model="query.worker"
-          placeholder="worker"
-          class="handle-input mr10"
-        ></el-input>
-        <el-button type="primary" icon="el-icon-search">搜索</el-button>
-      </div>
+      <el-row :gutter="20">
+        <el-col :span="20" :xs="24">
+          <el-form ref="query" :model="query" :inline="true" label-width="68px">
+            <el-form-item>
+              <el-input
+                v-model="query.worker"
+                placeholder="进程名称"
+                clearable
+                size="mini"
+                style="width: 200px"
+              />
+            </el-form-item>
+
+            <el-form-item>
+              <el-input
+                v-model="query.queue"
+                placeholder="队列"
+                clearable
+                size="mini"
+                style="width: 200px"
+              />
+            </el-form-item>
+
+            <el-form-item label="">
+              <el-select
+                v-model="query.is_action"
+                placeholder="状态"
+                clearable
+                style="width: 130px"
+                size="mini"
+                @change="handleFilter"
+              >
+                <el-option
+                  v-for="item,index in ['在线', '离线']"
+                  :key="!index"
+                  :label="item"
+                  :value="!index"
+                />
+              </el-select>
+            </el-form-item>
+
+            <el-form-item>
+              <el-button
+                type="primary"
+                size="mini"
+                icon="el-icon-search"
+                @click="handleFilter"
+              >
+                搜索
+              </el-button>
+            </el-form-item>
+          </el-form>
+        </el-col>
+      </el-row>
 
       <el-table
         :data="workers"
@@ -124,8 +162,9 @@ export default {
       limit: 1,
       sizeLimit: 100,
       query: {
-        status: "状态",
-        worker: "pai",
+        is_action: null,
+        worker: null,
+        queue: null,
       },
       workers: [],
       total: 0,
@@ -140,13 +179,19 @@ export default {
 
   methods: {
     get_workers() {
-      get_workers({}).then((res) => {
+      console.log("this.query: ",this.query)
+      get_workers(this.query).then((res) => {
         console.log(res);
         this.workers = res.data.workers;
         this.total = res.data.workers.length;
+        setTimeout(() => {}, 1.5 * 1000);
       });
     },
-    // 初始页currentPage、初始每页数据数pagesize和数据data
+
+    handleFilter() {
+      this.get_workers();
+    },
+
     handleSizeChange(size) {
       this.pagesize = size;
       this.get_workers();
