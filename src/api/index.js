@@ -4,6 +4,14 @@ const baseURL = process.env.VUE_APP_BACKEND_URL;
 const apiVersion = `/api/v1`;
 export const apiBase = `${baseURL}`; // ${apiVersion}
 
+export function get_redis_info(query) {
+    return request({
+        url: `${apiBase}/redis_info`,
+        method: 'GET',
+        params: query
+    })
+}
+
 
 export function get_workers(query) {
     return request({
@@ -11,7 +19,7 @@ export function get_workers(query) {
         method: 'GET',
         params: query
     })
-};
+}
 
 export function get_queued_jobs(query) {
     return request({
