@@ -116,7 +116,7 @@
         <el-table-column
           show-overflow-tooltip
           align="center"
-          label="队列"
+          label="队列名称"
           width="110px"
         >
           <template slot-scope="{ row }">
@@ -137,7 +137,7 @@
 
         <el-table-column
           show-overflow-tooltip
-          width="100px"
+          width="90px"
           align="center"
           label="任务参数"
         >
@@ -189,12 +189,12 @@
         >
         </el-table-column>
 
-        <el-table-column min-width="80px" align="center" label="运行状态">
+        <el-table-column min-width="100px" align="center" label="运行状态">
           <template slot-scope="{ row }">
-            <el-tag v-if="row.finish_time" type="success" size="mini"
-              >success</el-tag
+            <el-tag v-if="row.success" type="success" size="mini"
+              >succeeded</el-tag
             >
-            <el-tag v-else type="info" size="mini">failed</el-tag>
+            <el-tag v-else type="danger" size="mini">failed</el-tag>
           </template>
         </el-table-column>
 

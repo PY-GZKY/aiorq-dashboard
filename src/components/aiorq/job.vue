@@ -37,7 +37,7 @@
             <el-form-item>
               <el-input
                 v-model="query.job_id"
-                placeholder="任务名称"
+                placeholder="任务id"
                 clearable
                 size="mini"
                 style="width: 200px"
@@ -47,7 +47,7 @@
 
             <el-form-item label="">
               <el-select
-                v-model="query.status"
+                v-model="query.state"
                 placeholder="状态"
                 clearable
                 style="width: 130px"
@@ -55,10 +55,10 @@
                 @change="handleFilter"
               >
                 <el-option
-                  v-for="(item, index) in ['运行中', '等待中', '延迟']"
-                  :key="item"
-                  :label="item"
-                  :value="!index"
+                  v-for="(item, index) in [{'label':'运行中','value':'in_progress'}, {'label':'等待中','value':'queued'},{'label':'延迟','value':'deferred'},]"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
                 />
               </el-select>
             </el-form-item>
@@ -111,7 +111,7 @@
         <el-table-column
           show-overflow-tooltip
           align="center"
-          label="队列"
+          label="队列名称"
           width="130px"
         >
           <template slot-scope="{ row }">
@@ -238,7 +238,7 @@ export default {
       limit: 1,
       sizeLimit: 100,
       query: {
-        status: null,
+        state: null,
         worker_name: null,
         queue_name: "pai:queue2",
         function:null,
