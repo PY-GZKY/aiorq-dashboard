@@ -34,7 +34,7 @@
                 @change="handleFilter"
               >
                 <el-option
-                  v-for="item,index in ['在线', '离线']"
+                  v-for="(item, index) in ['在线', '离线']"
                   :key="!index"
                   :label="item"
                   :value="!index"
@@ -117,24 +117,32 @@
         >
         </el-table-column>
 
+        <el-table-column align="center" label="运行函数" min-width="200px">
+          <template slot-scope="{ row }">
+            <el-tag
+              v-for="(item, index) in row.functions"
+              type="success"
+              :key="index"
+              size="mini"
+              style="margin: 3px"
+            >
+              {{ item }}(...)
+            </el-tag>
+          </template>
+        </el-table-column>
+
         <el-table-column label="操作" min-width="180" align="center">
           <template slot-scope="scope">
             <el-button
               type="text"
-              icon="el-icon-edit"
-              @click="handleEdit(scope.$index, scope.row)"
-              >查看运行函数</el-button
-            >
-            <el-button
-              type="text"
-              icon="el-icon-delete"
               class="red"
-              @click="handleDelete(scope.$index, scope.row)"
-              >删除</el-button
+              @click="handle(scope.$index, scope.row)"
+              >详细配置参数</el-button
             >
           </template>
         </el-table-column>
       </el-table>
+
       <div class="pagination">
         <el-pagination
           background
@@ -171,6 +179,7 @@ export default {
       currentPage: 1,
       pagesize: 10,
       form: {},
+      showFuncVisible: false,
     };
   },
   created() {
@@ -179,7 +188,7 @@ export default {
 
   methods: {
     get_workers() {
-      console.log("this.query: ",this.query)
+      console.log("this.query: ", this.query);
       get_workers(this.query).then((res) => {
         console.log(res);
         this.workers = res.data.workers;

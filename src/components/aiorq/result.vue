@@ -6,7 +6,7 @@
           <el-form ref="query" :model="query" :inline="true" label-width="68px">
             <el-form-item>
               <el-input
-                v-model="query.worker"
+                v-model="query.worker_name"
                 placeholder="进程名称"
                 clearable
                 size="mini"
@@ -17,6 +17,7 @@
 
             <el-form-item>
               <el-input
+                v-model="query.function"
                 placeholder="任务"
                 clearable
                 size="mini"
@@ -27,6 +28,7 @@
 
             <el-form-item>
               <el-input
+               v-model="query.job_id"
                 placeholder="任务ID"
                 clearable
                 size="mini"
@@ -37,7 +39,7 @@
 
             <el-form-item label="">
               <el-select
-                v-model="query.status"
+                v-model="query.success"
                 placeholder="结果状态"
                 clearable
                 style="width: 130px"
@@ -46,7 +48,7 @@
               >
                 <!-- <el-option label="所有" key="" value="" /> -->
                 <el-option
-                  v-for="item,index in ['成功','失败']"
+                  v-for="(item, index) in ['成功', '失败']"
                   :key="item"
                   :label="item"
                   :value="!index"
@@ -233,8 +235,11 @@ export default {
       limit: 1,
       sizeLimit: 100,
       query: {
-        status: "状态",
-        worker: "pai",
+        success: null,
+        worker_name: null,
+        function: null,
+        job_id: null,
+        start_time: null
       },
       results: [],
       total: 0,

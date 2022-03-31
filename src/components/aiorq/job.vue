@@ -4,9 +4,9 @@
       <el-row :gutter="20">
         <el-col :span="20" :xs="24">
           <el-form ref="query" :model="query" :inline="true" label-width="68px">
-                 <el-form-item>
+            <el-form-item>
               <el-input
-                v-model="query.worker"
+                v-model="query.worker_name"
                 placeholder="进程名称"
                 clearable
                 size="mini"
@@ -14,11 +14,29 @@
                 @keyup.enter.native="handleFilter"
               />
             </el-form-item>
-
-
-              <el-form-item>
+            <el-form-item>
               <el-input
-                v-model="query.worker"
+                v-model="query.queue_name"
+                placeholder="队列名称"
+                clearable
+                size="mini"
+                style="width: 200px"
+                @keyup.enter.native="handleFilter"
+              />
+            </el-form-item>
+            <el-form-item>
+              <el-input
+                v-model="query.function"
+                placeholder="任务名称"
+                clearable
+                size="mini"
+                style="width: 200px"
+                @keyup.enter.native="handleFilter"
+              />
+            </el-form-item>
+            <el-form-item>
+              <el-input
+                v-model="query.job_id"
                 placeholder="任务名称"
                 clearable
                 size="mini"
@@ -27,39 +45,24 @@
               />
             </el-form-item>
 
-
             <el-form-item label="">
               <el-select
                 v-model="query.status"
-                placeholder="运行状态"
+                placeholder="状态"
                 clearable
                 style="width: 130px"
                 size="mini"
                 @change="handleFilter"
               >
-                <!-- <el-option label="所有" key="" value="" /> -->
                 <el-option
-                  v-for="item,index in ['成功','失败']"
+                  v-for="(item, index) in ['运行中', '等待中', '延迟']"
                   :key="item"
                   :label="item"
                   :value="!index"
                 />
               </el-select>
             </el-form-item>
-            
 
-            <el-form-item label="">
-              <el-date-picker
-                v-model="query.start_time"
-                type="datetimerange"
-                size="mini"
-                align="right"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
-                :default-time="['12:00:00', '08:00:00']"
-              >
-              </el-date-picker>
-            </el-form-item>
             <el-form-item>
               <el-button
                 v-waves
@@ -85,7 +88,7 @@
       >
         <el-table-column
           show-overflow-tooltip
-          width="270px"
+          width="280px"
           align="center"
           label="任务id"
         >
@@ -98,7 +101,7 @@
           show-overflow-tooltip
           align="center"
           label="任务"
-          width="130px"
+          width="140px"
         >
           <template slot-scope="{ row }">
             <el-tag type="" size="mini">{{ row.function }}</el-tag>
@@ -109,7 +112,7 @@
           show-overflow-tooltip
           align="center"
           label="队列"
-          width="110px"
+          width="130px"
         >
           <template slot-scope="{ row }">
             <el-tag type="" size="mini">{{ row.queue_name }}</el-tag>
@@ -120,7 +123,7 @@
           show-overflow-tooltip
           align="center"
           label="进程名称"
-          width="110px"
+          width="130px"
         >
           <template slot-scope="{ row }">
             <el-tag type="" size="mini">{{ row.worker_name }}</el-tag>
@@ -173,48 +176,38 @@
         >
         </el-table-column>
 
-
-       <el-table-column min-width="140px" align="center" label="状态">
-        <template slot-scope="{ row }">
-          <el-button
-            v-if="row.state == 'deferred'"
-            type="success"
-            size="mini"
-            plain
-            ><i class="el-icon-success"></i>延迟</el-button
-          >
-          <el-button
-            v-else-if="row.state == 'queued'"
-            type="warning"
-            size="mini"
-            plain
-            ><i class="el-icon-more"></i>等待</el-button
-          >
-          <el-button
-            v-else-if="row.state == 'in_progress'"
-            type="warning"
-            :loading="true"
-            size="mini"
-            plain
-            >进行中</el-button
-          >
-          <el-button
-            v-else-if="row.state == 'failed'"
-            type="error"
-            size="mini"
-            plain
-            ><i class="el-icon-error"></i>失败</el-button
-          >
-        </template>
-      </el-table-column>
-
-        <el-table-column
-          show-overflow-tooltip
-          prop="result"
-          label="运行结果"
-          width="120"
-          align="center"
-        >
+        <el-table-column min-width="110px" align="center" label="状态">
+          <template slot-scope="{ row }">
+            <el-button
+              v-if="row.state == 'deferred'"
+              type="warning"
+              size="mini"
+              plain
+              >延迟</el-button
+            >
+            <el-button
+              v-else-if="row.state == 'queued'"
+              type=""
+              size="mini"
+              plain
+              >等待中</el-button
+            >
+            <el-button
+              v-else-if="row.state == 'in_progress'"
+              type="success"
+              :loading="true"
+              size="mini"
+              plain
+              >运行中</el-button
+            >
+            <el-button
+              v-else-if="row.state == 'failed'"
+              type="error"
+              size="mini"
+              plain
+              ><i class="el-icon-error"></i>失败</el-button
+            >
+          </template>
         </el-table-column>
       </el-table>
 
@@ -245,8 +238,11 @@ export default {
       limit: 1,
       sizeLimit: 100,
       query: {
-        status: "状态",
-        worker: "pai",
+        status: null,
+        worker_name: null,
+        queue_name: "pai:queue2",
+        function:null,
+        job_id: null,
       },
       results: [],
       total: 0,
